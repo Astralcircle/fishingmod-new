@@ -1,6 +1,6 @@
 SWEP.Author = "CapsAdmin"
-SWEP.Category = "Fishing Mod"
-SWEP.Instructions = "To reel down, hold left mouse button\nTo reel up, hold right mouse button\nTo reel faster, hold shift\nTo reel slower, hold alt\nTo release bait, press e\nTo release catch, press r\nTo access the menu, press B"
+SWEP.Category = "Рыбалка"
+SWEP.Instructions = "Чтобы размотать вниз, удерживайте левую кнопку мыши\nЧтобы намотать, удерживайте правую кнопку мыши\nЧтобы наматывать быстрее, удерживайте Shift\nЧтобы наматывать медленнее, удерживайте Alt\nЧтобы сбросить приманку, нажмите E\nЧтобы сбросить улов, нажмите R\nЧтобы войти в меню, нажмите B"
 SWEP.Spawnable = true 
 SWEP.ViewModel = Model("models/weapons/v_hands.mdl")
 SWEP.WorldModel = ""
@@ -52,7 +52,7 @@ function SWEP:SecondaryAttack()
 end
 
 if CLIENT then
-	SWEP.PrintName = "Fishing Rod"			
+	SWEP.PrintName = "Удочка"			
 	SWEP.Slot = 3
 	SWEP.SlotPos = 1
 	SWEP.DrawAmmo = false
@@ -60,7 +60,7 @@ if CLIENT then
 	--SWEP.DrawCrosshair = true
 	function SWEP:Initialize()
 		if not self.hasMentioned and not game.SinglePlayer() and self:GetOwner() == LocalPlayer() then
-			chat.AddText(Color(0, 255, 0), "[Fishing Mod]", Color(255, 255, 255), ": Press 'B' by default to open the fishing mod menu. \nIf you bound 'B' to something else: bind <key> fishing_mod_menu.")
+			chat.AddText(Color(0, 255, 0), "[Рыбалка]", Color(255, 255, 255), ": По умолчанию нажмите 'B', чтобы открыть меню рыбалки. \nЕсли вы хотите привязать меню к чему-то другому: bind <key> fishing_mod_menu.")
 			self.hasMentioned = true
 		end
 	end
@@ -86,7 +86,7 @@ else
 				self:Remove()
 				return
 			elseif not self.hasMentioned and game.SinglePlayer() and IsValid(self:GetOwner()) then
-				self:GetOwner():ChatPrint("[Fishing Mod]: Press 'B' by default to open the fishing mod menu. \nIf you bound 'B' to something else: bind <key> fishing_mod_menu.")
+				self:GetOwner():ChatPrint('[Рыбалка]: По умолчанию нажмите "B", чтобы открыть меню рыбалки. \nЕсли вы хотите привязать меню к чему-то другому: bind <key> fishing_mod_menu.')
 				self.hasMentioned = true
 			end
 			self.fishing_rod.dt.rod_length = self:GetOwner().fishingmod.length / 10 + 1

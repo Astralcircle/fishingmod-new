@@ -343,7 +343,7 @@ function PANEL:Init()
 
 	self.money = vgui.Create("DLabel", self)
 	self.money:SetTextColor(ui_text)
-	self.money.Think = function(self) self:SetText("Money: " .. math.Round(LocalPlayer().fishingmod.money)) end
+	self.money.Think = function(self) self:SetText("Деньги: " .. math.Round(LocalPlayer().fishingmod.money)) end
 	
 	self:AddItem(self.money)
 	
