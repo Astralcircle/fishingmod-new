@@ -76,6 +76,7 @@ concommand.Add("fishing_mod_buy_bait", function(ply, command, arguments)
 		bait.data.friendly = type
 		bait:SetModel(table.Random(data.models))
 		bait:SetPos(util.QuickTrace(ply:GetShootPos(), ply:GetAimVector() * 100, ply).HitPos + Vector(0, 0, 32))
+		bait:CPPISetOwner(ply)
 		bait:Spawn()
 		if bait:IsValid() then
 			bait:GetPhysicsObject():SetMass(math.min(bait:GetPhysicsObject():GetMass(), 100))
