@@ -146,7 +146,7 @@ net.Receive("Fishingmod:Bait", function()
 		nameparse = ec_markup.Parse(nameparse):GetText()
 	end
 	local text = Format([[
-		This bait is owned by %s.
+		Эта наживка принадлежит %s.
 	]],
 	nameparse
 	)
