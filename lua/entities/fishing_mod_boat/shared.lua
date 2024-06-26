@@ -1,5 +1,5 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
-ENT.PrintName = "Boat"
+ENT.PrintName = "Лодка"
 ENT.Spawnable = true
-ENT.Category = "Fishing Mod"
+ENT.Category = "Рыбалка"
