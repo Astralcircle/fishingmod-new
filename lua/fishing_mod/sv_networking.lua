@@ -76,3 +76,17 @@ function fishingmod.SetBaitSale(bait, multiplier, ply)
 		net.Broadcast()
 	end
 end
+
+util.AddNetworkString("Fishingmod:ConvertPoints")
+
+net.Receive("Fishingmod:ConvertPoints", function(len, ply)
+    local targetmoney = net.ReadInt(32)
+    local points = math.floor(targetmoney / 500)
+
+    if not targetmoney or targetmoney > ply.fishingmod.money or points <= 0 then return end
+
+    fishingmod.TakeMoney(ply, targetmoney)
+    AddPointsBalance(ply, points)
+
+    ply:ChatPrint("Вы обменяли " .. targetmoney .. " поинтов, на " .. points .. " поинтов")
+end)

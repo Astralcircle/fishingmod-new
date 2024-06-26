@@ -120,7 +120,7 @@ function PANEL:Init()
 	self:MakePopup()
 	self:SetDeleteOnClose(false)
 	self:SetSizable(true)
-	self:SetTitle("Fishing Mod")
+	self:SetTitle("Рыбалка")
 	self.lblTitle:SetTextColor(ui_text)
 	self:ShowCloseButton(false)
 	self:SetSize(master_x, master_y)
@@ -132,19 +132,19 @@ function PANEL:Init()
 	
 	self.upgrade = vgui.Create("Fishingmod:Upgrade", self)
 
-	self.customization = vgui.Create("Fishingmod:Customization", self)
+	self.convertation = vgui.Create("Fishingmod:Customization", self)
 
 	local xpx, xpy = self:GetSize()
 
 	local upgrades_button = vgui.Create("DButton", self) -- upgrades
 	local baits_button = vgui.Create("DButton", self) -- baits shop
-	local customization_button = vgui.Create("DButton", self) -- customization tab
+	local convertation_button = vgui.Create("DButton", self) -- customization tab
 
 	upgrades_button.selected = true
 	baits_button.selected = false
 	upgrades_button:SetPos(margin, 24)
 	upgrades_button:SetSize((xpx - margin * 2) / margin, 22)
-	upgrades_button:SetText("Upgrades")
+	upgrades_button:SetText("Улучшения")
 	function upgrades_button.Think()
 		xpx, xpy = self:GetSize()
 		upgrades_button:SetSize((xpx - margin * 2) / margin, 22)
@@ -153,16 +153,16 @@ function PANEL:Init()
 	upgrades_button.DoClick = function()
 		upgrades_button:SetColor(ui_text)
 		baits_button:SetColor(nopres)
-		customization_button:SetColor(nopres)
+		convertation_button:SetColor(nopres)
 
 		baits_button:SetTextColor(button_not_selected)
-		customization_button:SetTextColor(button_not_selected)
+		convertation_button:SetTextColor(button_not_selected)
 
 		upgrades_button.selected = true
 		baits_button.selected = false
-		customization_button.selected = false
+		convertation_button.selected = false
 
-		self.customization:Hide()
+		self.convertation:Hide()
 		self.upgrade:Show()
 		self.baitshop:Hide()
 	end
@@ -189,21 +189,21 @@ function PANEL:Init()
 		baits_button:SetSize((xpx - margin * 2) / margin, 22)
 		baits_button:SetPos(margin + (xpx - margin * 2) / margin, 24)
 	end
-	baits_button:SetText("Bait Shop")
+	baits_button:SetText("Магазин наживок")
 	baits_button:SetTextColor(button_not_selected)
 	baits_button.DoClick = function()
 		baits_button:SetColor(ui_text)
 		upgrades_button:SetColor(nopres)
-		customization_button:SetColor(nopres)
+		convertation_button:SetColor(nopres)
 
 		upgrades_button:SetTextColor(button_not_selected)
-		customization_button:SetTextColor(button_not_selected)
+		convertation_button:SetTextColor(button_not_selected)
 
 		upgrades_button.selected = false
 		baits_button.selected = true
-		customization_button.selected = false
+		convertation_button.selected = false
 
-		self.customization:Hide()
+		self.convertation:Hide()
 		self.upgrade:Hide()
 		self.baitshop:Show()
 	end
@@ -224,26 +224,26 @@ function PANEL:Init()
 	end
 
 
-	customization_button:SetPos(margin + (xpx - margin * 2) / margin, 24) -- baits shop start of conf
-	customization_button:SetSize((xpx - margin * 2) / margin, 22)
+	convertation_button:SetPos(margin + (xpx - margin * 2) / margin, 24) -- baits shop start of conf
+	convertation_button:SetSize((xpx - margin * 2) / margin, 22)
 	
-	function customization_button.Think()
+	function convertation_button.Think()
 		xpx, xpy = self:GetSize()
 		if xpx % margin == 2 then -- odd widths
-			customization_button:SetSize(math.Round((xpx - margin * 2) / margin) + 1 , 22)
-			customization_button:SetPos(margin - 1 + (xpx - margin * 2) / margin * 2 , 24)
+			convertation_button:SetSize(math.Round((xpx - margin * 2) / margin) + 1 , 22)
+			convertation_button:SetPos(margin - 1 + (xpx - margin * 2) / margin * 2 , 24)
 		elseif xpx % margin == 1  then
-			customization_button:SetSize(math.Round((xpx - margin * 2) / margin) + 1, 22)
-			customization_button:SetPos(margin + (xpx - margin * 2) / margin * 2 , 24)
+			convertation_button:SetSize(math.Round((xpx - margin * 2) / margin) + 1, 22)
+			convertation_button:SetPos(margin + (xpx - margin * 2) / margin * 2 , 24)
 		else
-			customization_button:SetSize(math.Round((xpx - margin * 2) / margin) , 22)
-			customization_button:SetPos(margin + (xpx - margin * 2) / margin * 2 , 24)
+			convertation_button:SetSize(math.Round((xpx - margin * 2) / margin) , 22)
+			convertation_button:SetPos(margin + (xpx - margin * 2) / margin * 2 , 24)
 		end
 	end
-	customization_button:SetText("Customize")
-	customization_button:SetTextColor(button_not_selected)
-	customization_button.DoClick = function()
-		customization_button:SetColor(ui_text)
+	convertation_button:SetText("Обмен")
+	convertation_button:SetTextColor(button_not_selected)
+	convertation_button.DoClick = function()
+		convertation_button:SetColor(ui_text)
 		upgrades_button:SetColor(nopres)
 		baits_button:SetColor(nopres)
 
@@ -252,22 +252,22 @@ function PANEL:Init()
 
 		upgrades_button.selected = false
 		baits_button.selected = false
-		customization_button.selected = true
+		convertation_button.selected = true
 
-		self.customization:Show()
+		self.convertation:Show()
 		self.upgrade:Hide()
 		self.baitshop:Hide()
 
 	end
-	customization_button.Paint = function(self, w, h)
+	convertation_button.Paint = function(self, w, h)
 		if self.selected then
-			customization_button:SetColor(ui_text)
+			convertation_button:SetColor(ui_text)
 		elseif not self.selected then
-			customization_button:SetColor(button_not_selected)
+			convertation_button:SetColor(button_not_selected)
 		end
-		if(customization_button:IsHovered()) then
+		if(convertation_button:IsHovered()) then
 			surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		elseif(customization_button.selected) then
+		elseif(convertation_button.selected) then
 			surface.SetDrawColor(background.r, background.g, background.b, background.a)
 		else
 			surface.SetDrawColor(nopres.r, nopres.g, nopres.b, nopres.a)
@@ -286,7 +286,7 @@ function PANEL:Init()
 	local x, y = self:GetSize()
 	close_button.ButtonW = 60
 	close_button:SetSize(close_button.ButtonW, 18)
-	close_button:SetText("Close")
+	close_button:SetText("Закрыть")
 	close_button:SetTextColor(ui_text)
 	close_button:SetPos(x - close_button.ButtonW - margin, margin)
 	close_button.DoClick = function()
@@ -348,21 +348,21 @@ function PANEL:Init()
 	self:AddItem(self.money)
 	
 	self.length = vgui.Create("Fishingmod:UpgradeButton", self)
-	self.length:SetType("Rod Length:", "length", "rod_length", fishingmod.RodLengthPrice)
+	self.length:SetType("Длинна удочки:", "length", "rod_length", fishingmod.RodLengthPrice)
 
 	self:AddItem(self.length)
 	
 	self.stringlength = vgui.Create("Fishingmod:UpgradeButton", self)
-	self.stringlength:SetType("String Length:", "string_length", "string_length", fishingmod.StringLengthPrice)
+	self.stringlength:SetType("Длинна лески:", "string_length", "string_length", fishingmod.StringLengthPrice)
 
 	self:AddItem(self.stringlength)
 	
 	self.reelspeed = vgui.Create("Fishingmod:UpgradeButton", self)
-	self.reelspeed:SetType("Reel Speed:", "reel_speed", "reel_speed", fishingmod.ReelSpeedPrice)
+	self.reelspeed:SetType("Скорость катушки:", "reel_speed", "reel_speed", fishingmod.ReelSpeedPrice)
 	self:AddItem(self.reelspeed)
 	
 	self.force = vgui.Create("Fishingmod:UpgradeButton", self)
-	self.force:SetType("Hook Force:", "force", "hook_force", fishingmod.HookForcePrice)
+	self.force:SetType("Сила крюка:", "force", "hook_force", fishingmod.HookForcePrice)
 	self:AddItem(self.force)
 end
 
@@ -448,118 +448,95 @@ function PANEL:Init()
 		end
 	end
 
-	local save_button = vgui.Create("DButton", self)
-	save_button:SetPos(10, 50)
-	save_button:SetSize(120, 30)
-	save_button:SetTextColor(ui_text)
-	save_button:SetText("Save")
-	save_button.Paint = function(self, w, h)
-		save_button:SetTextColor(ui_text)
-		surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		surface.DrawRect(0, 0, w, h)
+	self.helptext = vgui.Create("DLabel", self)
+	self.helptext:SetText("Обменник поинтов рыбалки на обычные поинты!")
+	self.helptext:SetContentAlignment(5)
+	
+	self:AddItem(self.helptext)
+
+	---
+	
+	self.empty = vgui.Create("DPanel", self)
+
+	function self.empty:Paint() return true end
+
+	local fishpoints = vgui.Create("DTextEntry", self.empty)
+	local classicpoints = vgui.Create("DTextEntry", self.empty)
+
+	fishpoints:Dock(LEFT)
+	fishpoints.AllowInput = function(self, text)
+		if not string.match(text, "%d") then
+			return true
+		end
+
+		timer.Simple(0, function()
+			classicpoints:SetValue(math.floor(tonumber(self:GetValue()) / 500))
+		end)
 	end
 
-	save_button.DoClick = function()
-		if fishingmod.SaveUIColors then
-			fishingmod.SaveUIColors()
-			chat.AddText(col_green, "[Fishing Mod]", col_white, ": Colors have been saved!")
+	local tothis = vgui.Create("DLabel", self.empty)
+
+	tothis:Dock(FILL)
+	tothis:SetText(">>>")
+	tothis:SetContentAlignment(5)
+
+	classicpoints:Dock(RIGHT)
+	classicpoints.AllowInput = function(self, text)
+		if not string.match(text, "%d") then
+			return true
 		end
-	end
-	local defaults_button = vgui.Create("DButton", self)
-	defaults_button:SetPos(10, 90)
-	defaults_button:SetSize(120, 30)
-	defaults_button:SetTextColor(ui_text)
-	defaults_button:SetText("Defaults")
-	defaults_button.Paint = function(self, w, h)
-		defaults_button:SetTextColor(ui_text)
-		surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		surface.DrawRect(0, 0, w, h)
+
+		timer.Simple(0, function()
+			fishpoints:SetValue(math.floor(tonumber(self:GetValue()) * 500))
+		end)
 	end
 
-	defaults_button.DoClick = function()
-		if fishingmod.DefaultUIColors then
-			fishingmod.ColorTable = fishingmod.DefaultUIColors()
-			chat.AddText(col_green, "[Fishing Mod]", col_white, ": Colors have been set to default!")
-		end
-	end
+	self:AddItem(self.empty)
+
+	do
+		self.helppanel = vgui.Create("DPanel", self)
+
+		function self.helppanel:Paint() return true end
 	
-	local combo_box = vgui.Create("DComboBox", self )
-	combo_box:SetPos(10, 10)
-	combo_box:SetSize(120, 30)
-	combo_box:SetValue("Select element")
-	if fishingmod.ColorTable then
-		if fishingmod.LoadUIColors then
-			for k, v in pairs(fishingmod.LoadUIColors()) do
-				combo_box:AddChoice(translation[k])
-			end
-		end
-	end
-	combo_box.Paint = function(self, w, h)
-		combo_box:SetTextColor(ui_text)
-		if(combo_box:IsDown()) then
-			surface.SetDrawColor(pres.r, pres.g, pres.b, pres.a)
-		elseif(combo_box:IsHovered()) then
-			surface.SetDrawColor(ui_button_hovered.r, ui_button_hovered.g, ui_button_hovered.b, ui_button_hovered.a)
-		else
-			surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		end
-		surface.DrawRect(0, 0, w, h)
-	end
-	local color_mixer = vgui.Create( "DColorMixer", self)
-	local x, y = self:GetSize()
-	color_mixer:SetPos(120 + 20, 10)
-	color_mixer:SetWangs(true)
-	color_mixer:SetPalette(false)
-	color_mixer:SetSize(x - 10 - 120 - 20, y - 20)
-	function color_mixer:ValueChanged(col)
-		if editable and editable != "" and fishingmod.DefaultUIColors()[editable] then
-			fishingmod.ColorTable[editable] = Color(col.r, col.g, col.b, col.a)
-		end
-	end
-	function combo_box.OnSelect(self, val, str)
-		if type(str)=="string" and str != "" then
-			editable = translation[str]
-			if fishingmod.ColorTable[editable] then
-				color_mixer:SetColor(fishingmod.ColorTable[editable])
-			end
-		end
-	end
+		local firsthelp = vgui.Create("DLabel", self.helppanel)
 	
-	function save_button:Paint(w, h)
-		save_button:SetTextColor(ui_text)
-		if(save_button:IsDown()) then
+		firsthelp:Dock(LEFT)
+		firsthelp:SetText("Отдадите")
+		firsthelp:SetContentAlignment(5)
+	
+		local twohelp = vgui.Create("DLabel", self.helppanel)
+	
+		twohelp:Dock(RIGHT)
+		twohelp:SetText("Получите")
+		twohelp:SetContentAlignment(5)
+	
+		self:AddItem(self.helppanel)
+	end
+
+	self.convertbutton = vgui.Create("DButton", self)
+	self.convertbutton:SetText("Обменять")
+
+	function self.convertbutton:OnMousePressed(keycode)
+		if keycode ~= MOUSE_LEFT then return end
+
+		net.Start("Fishingmod:ConvertPoints")
+		net.WriteInt(fishpoints:GetValue(), 32)
+		net.SendToServer()
+	end
+
+	self.convertbutton.Paint = function(self, w, h)
+		self:SetTextColor(ui_text)
+		if self:IsDown() then
 			surface.SetDrawColor(pres.r, pres.g, pres.b, pres.a)
-		elseif(save_button:IsHovered()) then
+		elseif self:IsHovered() then
 			surface.SetDrawColor(ui_button_hovered.r, ui_button_hovered.g, ui_button_hovered.b, ui_button_hovered.a)
 		else
 			surface.SetDrawColor(background.r, background.g, background.b, background.a)
 		end
 		surface.DrawRect(0, 0, w, h)
-	end
-	function defaults_button:Paint(w, h)
-		defaults_button:SetTextColor(ui_text)
-		if(defaults_button:IsDown()) then
-			surface.SetDrawColor(pres.r, pres.g, pres.b, pres.a)
-		elseif(defaults_button:IsHovered()) then
-			surface.SetDrawColor(ui_button_hovered.r, ui_button_hovered.g, ui_button_hovered.b, ui_button_hovered.a)
-		else
-			surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		end
-		surface.DrawRect(0, 0, w, h)
-	end
-	function self:Paint()
-		surface.SetTextColor(ui_text.r, ui_text.g, ui_text.b, ui_text.a)
-		surface.SetDrawColor(background.r, background.g, background.b, background.a)
-		surface.DrawRect(0, 0, self:GetWide(), self:GetTall())
-		return true
-	end
-	function self:OnSizeChanged(x, y)
-		color_mixer:SetSize(math.max(math.min(140, x - 20), x - 10 - 120 - 20), y - 20)
-		color_mixer:SetPos(math.min(120 + 20, math.max(x - 150, 10)), 10)
-		combo_box:SetSize(math.min(120, x - 170), math.min(30, y - 20))
-		save_button:SetSize(math.min(120, x - 170), math.min(30, y - 60))
-		defaults_button:SetSize(math.min(120, x - 170), math.min(30, y - 100))
-	end
+	end	
+
+	self:AddItem(self.convertbutton)
 end
 
 vgui.Register("Fishingmod:Customization", PANEL, "DPanelList")
@@ -686,14 +663,14 @@ function fishingmod.UpdateSales()
 	for key, bait in pairs(fishingmod.BaitTable) do
 		local levelrequired = fishingmod.CatchTable[key].levelrequired
 		local saleprice = math.Round(bait.price * bait.multiplier)
-		local sale = "This bait now cost " .. math.Round(bait.price * bait.multiplier) .. "!\nIts original price is " .. bait.price .. "."
+		local sale = "Эта наживка сейчас стоит " .. math.Round(bait.price * bait.multiplier) .. "!\nЕё первоначальная цена " .. bait.price .. "."
 		
 		if saleprice == 0 then
-			sale = "This bait is free! "
+			sale = "Эта наживка бесплатна! "
 		end
 		
 		if IsValid(bait.icon) then
-			bait.icon:SetToolTip(sale .. "\nYou need to be level " .. levelrequired .. " or higher to use this bait.")
+			bait.icon:SetToolTip(sale .. "\nВам нужно иметь уровень " .. levelrequired .. " или выше чтобы использовать эту наживку.")
 			bait.icon:SetSale(bait.multiplier)
 		end
 	end

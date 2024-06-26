@@ -4,21 +4,21 @@ fishingmod.InfoTable.Bait = fishingmod.InfoTable.Bait or {}
 
 local function FriedToFriendly(number)
 	if number == 0 then
-		return "not cooked at all"
+		return "вообще не приготовленный"
 	elseif number < 200 then
-		return "cooked rare"
+		return "очень слабо прожаренный"
 	elseif number < 300 then
-		return "cooked medium rare"
+		return "слабой прожарки"
 	elseif number < 500 then
-		return "cooked medium"
+		return "средней прожарки"
 	elseif number < 600 then
-		return "cooked medium well"
+		return "почти прожаренный"
 	elseif number < 700 then
-		return "cooked well done"
+		return "прожаренный"
 	elseif number < 900 then
-		return "almost burnt" 
+		return "почти сгорел" 
 	elseif number <= 1000 then
-		return "burnt"
+		return "сгорел"
 	end
 end
 
@@ -107,12 +107,12 @@ net.Receive("Fishingmod:Catch", function()
 		cooked = FriedToFriendly(fried),
 		value = value,
 	}
-	local text = Format([[This catch is called %s
-and it is %s
-%s caught this
+	local text = Format([[Этот улов называется %s
+и он %s
+%s выловил его
 {TIME}
-You can sell this catch 
-by pressing reload for $%s.]],
+Вы можете продать этот улов 
+нажав кнопку перезарядки за $%s.]],
 	friendly,
 	FriedToFriendly(fried),
 	owner,
