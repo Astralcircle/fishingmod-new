@@ -1,4 +1,4 @@
-language.Add("fishing_mod_boat", "Fishing Boat")
+language.Add("fishing_mod_boat","Fishing Boat")
 
 include("shared.lua")
 

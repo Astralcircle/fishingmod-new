@@ -71,11 +71,11 @@ function ENT:Hook( entity, data )
 		
 	if IsEntity(entity) and IsValid(entity) then
         if entity.PreHook and entity:PreHook(ply, true) == false then return end
-		local oldname = entity:GetNW2String("fishingmod friendly")
-		entity:SetNW2String("fishingmod friendly", oldname ~= "" and oldname or data.friendly or "Unknown")
-		entity:SetNW2Bool("fishingmod catch", true)
+		local oldname = entity:GetNWString("fishingmod friendly")
+		entity:SetNWString("fishingmod friendly", oldname ~= "" and oldname or data.friendly or "Unknown")
+		entity:SetNWBool("fishingmod catch", true)
 		if data.size then
-			entity:SetNW2Float("fishingmod size", data.size)
+			entity:SetNWFloat("fishingmod size", data.size)
 		end
 		self:SetPos(self:GetPos()+Vector(0,0,64))
 		entity.is_catch = true
@@ -124,13 +124,13 @@ function ENT:Hook( entity, data )
 		
 		if data.scalable == "box" then
 			entity:PhysicsInitBox(entity:OBBMins()*size,entity:OBBMaxs()*size)
-			entity:SetNW2Float("fishingmod scale", size)
+			entity:SetNWFloat("fishingmod scale", size)
 		elseif data.scalable == "sphere" then
 			entity:PhysicsInitSphere(entity:BoundingRadius()*(size or 1))
-			entity:SetNW2Float("fishingmod scale",(size or 1)*(data.scalable_extra or 1))
+			entity:SetNWFloat("fishingmod scale",(size or 1)*(data.scalable_extra or 1))
 		end
 		if data.scalable then
-			entity:SetNW2Bool("fishingmod scalable", true)
+			entity:SetNWBool("fishingmod scalable", true)
 			if entity.Initialize then entity:Initialize() end
 		end
 		
@@ -152,12 +152,12 @@ function ENT:Hook( entity, data )
 		entity.data.value = (entity.data.value or 0) * (size*1.5)
 		entity.data.friendly = name .. " " .. entity.data.friendly
 		
-		entity:SetNW2String("fishingmod friendly", entity.data.friendly)
+		entity:SetNWString("fishingmod friendly", entity.data.friendly)
 		
-		entity:SetNW2Bool("fishingmod catch", true)
+		entity:SetNWBool("fishingmod catch", true)
 		
 		if data.size then
-			entity:SetNW2Float("fishingmod size", data.size)
+			entity:SetNWFloat("fishingmod size", data.size)
 		end
 				
 		if data.remove_on_release then

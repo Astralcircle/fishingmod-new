@@ -65,9 +65,9 @@ function ENT:SetupHook(event_name)
 end
 
 function ENT:IsCatch()
-	return self:GetNW2Bool("fishingmod catch")
+	return self:GetNWBool("fishingmod catch")
 end
 
 function ENT:GetSize()
-	return self:GetNW2Float("fishingmod scale", 1)
+	return self:GetNWFloat("fishingmod scale", 1)
 end

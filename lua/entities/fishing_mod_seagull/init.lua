@@ -35,7 +35,7 @@ function ENT:PickTarget()
 			owner = player.GetByUniqueID(catch.data.ownerid)
 		end
 		if 
-			catch:GetNW2Bool("fishingmod catch") and 
+			catch:GetNWBool("fishingmod catch") and 
 			catch.data and 
 			util.TraceLine({start = self:GetPos(), endpos = catch:GetPos(), filter = self}).Entity == catch and 
 			owner and 
@@ -138,7 +138,7 @@ function ENT:OnTakeDamage(data)
 			ownerid = realOwner:UniqueID(),
 		}
 		
-		ragdoll:SetNW2Bool("fishingmod catch", true)
+		ragdoll:SetNWBool("fishingmod catch", true)
 		ragdoll:Spawn()
 		
 		if ragdoll.CPPISetOwner then ragdoll:CPPISetOwner(realOwner) end

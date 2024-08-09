@@ -13,7 +13,7 @@ fishingmod.HookForcePrice = 600
 local PLAYER = FindMetaTable("Player")
 
 function PLAYER:GetFishingRod()
-	return IsValid(self:GetNW2Entity("fishing rod")) and self:GetNW2Entity("fishing rod") or false
+	return IsValid(self:GetNWEntity("fishing rod")) and self:GetNWEntity("fishing rod") or false
 end
 
 function fishingmod.FriedToColor(amount)
