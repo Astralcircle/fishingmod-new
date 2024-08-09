@@ -89,9 +89,18 @@ hook.Add("InitPostEntity", "Fishingmod:HUDPaint_Init", function()
 
 	hook.Add("HUDPaint", "Fishingmod:HUDPaint", function()
 		local entity = Localplayer:GetEyeTrace().Entity
-		local fmredirect = entity:GetNW2Entity("FMRedirect")
-	
-		entity = IsValid(entity) and IsValid(fmredirect) and fmredirect or nil
+
+		if IsValid(entity) then
+			local fmredirect = entity:GetNW2Entity("FMRedirect")
+
+			if IsValid(fmredirect) then
+				entity = fmredirect
+			else
+				entity = nil
+			end
+		else
+			entity = nil
+		end
 	
 		if IsValid(entity) then
 			local xy = (entity:LocalToWorld(entity:OBBCenter())):ToScreen()
