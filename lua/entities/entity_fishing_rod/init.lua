@@ -115,7 +115,7 @@ function ENT:AssignPlayer(ply)
 end
 
 function ENT:Think()
-	if not IsValid(self.dt.ply) or not self.dt.ply:Alive() or not IsValid(self.dt.ply:GetNWEntity("fishing rod")) then self:Remove() return end
+	if not IsValid(self.dt.ply) or not self.dt.ply:Alive() or not IsValid(self.dt.ply:GetNW2Entity("fishing rod")) then self:Remove() return end
 	self:NextThink(CurTime())
 	return true
 end

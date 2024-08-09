@@ -44,7 +44,7 @@ if SERVER then
 		heavy:SetPos(self:GetPos())
 		heavy:Spawn()
 		self:SetParent(self.Heavy)
-		heavy:SetNWEntity("FMRedirect", self)
+		heavy:SetNW2Entity("FMRedirect", self)
 		self.dt.Heavy = heavy
 		self.health = max_health
 	end

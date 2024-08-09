@@ -101,7 +101,7 @@ function ENT:HUDPaint()
 
 	local hooked_entity = self:GetHook() and self:GetHook():GetHookedEntity()
 	if hooked_entity and hooked_entity:WaterLevel() == 0 and hooked_entity:GetPos():Distance(LocalPlayer():EyePos()) < 500 then
-		catch = "\nУлов: " .. string.Trim(hooked_entity:GetNWString("fishingmod friendly")) -- the catch had 2 spaces before it
+		catch = "\nУлов: " .. string.Trim(hooked_entity:GetNW2String("fishingmod friendly")) -- the catch had 2 spaces before it
 		bg_heightdepthcatch = bg_heightdepthcatch + 13
     else
         catch = ""

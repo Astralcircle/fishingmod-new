@@ -7,8 +7,8 @@ include("sv_upgrades.lua")
 function fishingmod.SetData(entity, data)
 	entity.data = data
 	entity:SetColor(fishingmod.FriedToColor(data.fried or 0))
-	entity:SetNWBool("fishingmod catch", true)
-	entity:SetNWFloat("fishingmod size", data.size)
+	entity:SetNW2Bool("fishingmod catch", true)
+	entity:SetNW2Float("fishingmod size", data.size)
 end
 
 fishingmod.CatchTable = {}
@@ -213,8 +213,8 @@ end
 
 hook.Add("KeyPress", "Fishingmod:KeyPress", function(ply, key)
 	local entity = ply:GetEyeTrace().Entity
-	entity = IsValid(entity) and IsValid(entity:GetNWEntity("FMRedirect")) and entity:GetNWEntity("FMRedirect") or entity
-	if IsValid(entity) and key == IN_RELOAD and entity:GetPos():Distance(ply:GetShootPos()) < 120 and entity:GetNWBool("fishingmod catch") then
+	entity = IsValid(entity) and IsValid(entity:GetNW2Entity("FMRedirect")) and entity:GetNW2Entity("FMRedirect") or entity
+	if IsValid(entity) and key == IN_RELOAD and entity:GetPos():Distance(ply:GetShootPos()) < 120 and entity:GetNW2Bool("fishingmod catch") then
 		local owner = player.GetByUniqueID(entity.data.ownerid)
 		if owner ~= ply then return end
 		--if entity.data.cant_sell and entity.Use then pcall(entity.Use,entity,ply) return end
@@ -305,7 +305,7 @@ concommand.Add("fishing_mod_request_init", function(ply)
 	if ply.fishing_mod_spawned then return end
 	
 	for key, entity in pairs(ents.GetAll()) do
-		if entity:GetNWBool("fishingmod catch") then
+		if entity:GetNW2Bool("fishingmod catch") then
 			fishingmod.SetCatchInfo(entity, ply)
 		end
 	end

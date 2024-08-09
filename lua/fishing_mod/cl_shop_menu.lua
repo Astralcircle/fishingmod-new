@@ -57,30 +57,11 @@ function fishingmod.SaveUIColors()
 	file.Write(fishingmod_data_path .. fishingmod_data_file_name, util.TableToJSON(return_data, false))
 	new_data = nil
 end
+
 function fishingmod.LoadUIColors()
-	local temp_col = Color(0, 0, 0, 72)
-	if file.Exists(fishingmod_data_path, "DATA") then
-		if file.Exists(fishingmod_data_path .. fishingmod_data_file_name, "DATA") then
-			local temp_data = util.JSONToTable(file.Read(fishingmod_data_path .. fishingmod_data_file_name, "DATA"))
-			local return_data = fishingmod.DefaultUIColors()
-			if temp_data then
-				for k, v in pairs(temp_data) do
-					if k and v then
-						if #tostring(k) < 4 or #tostring(v) < 4 then return fishingmod.DefaultUIColors() end
-						temp_data[k] = string.ToColor(v) or temp_col
-					end
-				end
-				table.Merge(return_data, temp_data)
-			end
-			temp_data = {}
-			return return_data
-		else
-			return fishingmod.DefaultUIColors() -- return defaults if the file does not exist
-		end
-	else
-		return fishingmod.DefaultUIColors() -- return defaults if the folder does not exist
-	end
+	return fishingmod.DefaultUIColors()
 end
+
 fishingmod.ColorTable = fishingmod.LoadUIColors()
 
 

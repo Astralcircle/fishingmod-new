@@ -92,7 +92,7 @@ else
 			self.fishing_rod.dt.rod_length = self:GetOwner().fishingmod.length / 10 + 1
 			self.fishing_rod:Spawn()
 			self.fishing_rod:AssignPlayer(self:GetOwner())
-			self:GetOwner():SetNWEntity("fishing rod", self.fishing_rod)
+			self:GetOwner():SetNW2Entity("fishing rod", self.fishing_rod)
 			if self.fishing_rod.CPPISetOwner then self.fishing_rod:CPPISetOwner(self:GetOwner()) end
 			return true
 		end
@@ -100,7 +100,7 @@ else
 
 	function SWEP:KillRod()
 		if IsValid(self) and IsValid(self:GetOwner()) and IsValid(self.fishing_rod) then
-			self:GetOwner():SetNWEntity("fishing rod", NULL)
+			self:GetOwner():SetNW2Entity("fishing rod", NULL)
 			return true
 		end
 		if IsValid(self.fishing_rod) then

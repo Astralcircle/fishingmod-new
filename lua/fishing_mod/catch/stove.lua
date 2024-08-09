@@ -257,7 +257,7 @@ else
 		
 			local catch = data.item
 			
-			catch = IsValid(catch) and IsValid(catch:GetNWEntity("FMRedirect")) and catch:GetNWEntity("FMRedirect") or catch
+			catch = IsValid(catch) and IsValid(catch:GetNW2Entity("FMRedirect")) and catch:GetNW2Entity("FMRedirect") or catch
 				
 			if catch and #constraint.FindConstraints(catch) == 0 then 
 				catch.shelf_stored = nil
@@ -328,7 +328,7 @@ else
 			timer.Simple(0.1, function()
 				if IsValid(self) and IsValid(entity) then
 					local isragdoll = entity:GetClass() == "prop_ragdoll" or entity.is_ragdoll or false
-					entity = IsValid(entity) and IsValid(entity:GetNWEntity("FMRedirect")) and entity:GetNWEntity("FMRedirect") or entity
+					entity = IsValid(entity) and IsValid(entity:GetNW2Entity("FMRedirect")) and entity:GetNW2Entity("FMRedirect") or entity
 					local phys = entity:GetPhysicsObject()
 					if IsValid(phys) then
 						phys:SetAngles( self:GetAngles() )
